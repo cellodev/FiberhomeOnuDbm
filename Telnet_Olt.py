@@ -2,6 +2,7 @@ import telnetlib
 import re
 import sys
 import xlsxwriter
+import os
 
 try:
     ipolt = "|192.168.1.1|"
@@ -101,7 +102,7 @@ for seria in allonu:
         local = local.split('OnuType')[0]
         local = local.split('-')
     except:
-        local.append("Error collect")
+        sys.exit("Error collect.")
     local1 = []
     for s in local:
         s = s.replace(" ", "")
@@ -149,3 +150,4 @@ for seria in allonu:
     p.append(local1[1])
     xsheet.write_row(x, 0, p)
 xbook.close()
+print("File name 'My Query OLT.xlsx' generated at address: {}".format(os.getcwd()))
